@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Plus, Search, Trash2, Edit } from 'lucide-react';
 import './Teachers.css';
 import AddTeacher from './AddTeacher';
 
 const Teachers = () => {
+    const { t } = useTranslation();
     const [showForm, setShowForm] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [viewMode, setViewMode] = useState('active'); // 'active' or 'terminated'
@@ -75,8 +77,8 @@ const Teachers = () => {
         <div className="teachers-page">
             <div className="page-header">
                 <div>
-                    <h1 className="page-title">Teachers</h1>
-                    <p className="page-subtitle">Manage school teachers</p>
+                    <h1 className="page-title">{t('teachers_page.title')}</h1>
+                    <p className="page-subtitle">{t('teachers_page.subtitle')}</p>
                 </div>
                 {!showForm && viewMode === 'active' && (
                     <button
@@ -84,7 +86,7 @@ const Teachers = () => {
                         onClick={() => setShowForm(true)}
                     >
                         <Plus size={20} />
-                        Add Teacher
+                        {t('teachers_page.add_button')}
                     </button>
                 )}
             </div>
@@ -103,7 +105,7 @@ const Teachers = () => {
                             <Search size={20} className="search-icon" />
                             <input
                                 type="text"
-                                placeholder="Search by name or subject..."
+                                placeholder={t('teachers_page.search_placeholder')}
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
@@ -113,13 +115,13 @@ const Teachers = () => {
                                 className={`toggle-btn ${viewMode === 'active' ? 'active' : ''}`}
                                 onClick={() => setViewMode('active')}
                             >
-                                Active Teachers
+                                {t('teachers_page.active_tab')}
                             </button>
                             <button
                                 className={`toggle-btn ${viewMode === 'terminated' ? 'active' : ''}`}
                                 onClick={() => setViewMode('terminated')}
                             >
-                                Terminated
+                                {t('teachers_page.terminated_tab')}
                             </button>
                         </div>
                     </div>
@@ -128,13 +130,13 @@ const Teachers = () => {
                         <table className="teachers-table">
                             <thead>
                                 <tr>
-                                    <th>Full Name</th>
-                                    <th>Subject</th>
-                                    <th>Degree</th>
-                                    <th>Phone Number</th>
-                                    <th>Status</th>
-                                    {viewMode === 'terminated' && <th>Termination Reason</th>}
-                                    <th>Actions</th>
+                                    <th>{t('common.full_name')}</th>
+                                    <th>{t('common.subject')}</th>
+                                    <th>{t('common.degree')}</th>
+                                    <th>{t('common.phone_number')}</th>
+                                    <th>{t('common.status')}</th>
+                                    {viewMode === 'terminated' && <th>{t('common.termination_reason')}</th>}
+                                    <th>{t('common.actions')}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -151,7 +153,7 @@ const Teachers = () => {
                                             <td>{teacher.phoneNumber}</td>
                                             <td>
                                                 <span className={`badge ${teacher.status === 'Active' ? 'badge-active' :
-                                                        teacher.status === 'Terminated' ? 'badge-terminated' : 'badge-inactive'
+                                                    teacher.status === 'Terminated' ? 'badge-terminated' : 'badge-inactive'
                                                     }`}>
                                                     {teacher.status}
                                                 </span>
@@ -180,7 +182,7 @@ const Teachers = () => {
                                 ) : (
                                     <tr>
                                         <td colSpan={viewMode === 'terminated' ? "7" : "6"} className="text-center">
-                                            No {viewMode} teachers found matching your search.
+                                            {t('teachers_page.not_found')}
                                         </td>
                                     </tr>
                                 )}

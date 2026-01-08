@@ -1,0 +1,88 @@
+{
+    "dashboard": "Boshqaruv paneli",
+    "students": "O'quvchilar",
+    "payments": "To'lovlar",
+    "parents": "Ota-onalar",
+    "teachers": "O'qituvchilar",
+    "class": "Sinflar",
+    "logout": "Chiqish",
+    "dashboard_page": {
+        "title": "Boshqaruv paneli",
+        "subtitle": "Maktab ko'rsatkichlari umumiy ko'rinishi",
+        "total_students": "Jami o'quvchilar",
+        "total_teachers": "Jami o'qituvchilar",
+        "profit": "Foyda",
+        "paid_students": "To'lov qilganlar",
+        "unpaid_students": "To'lov qilmaganlar"
+    },
+    "students_page": {
+        "title": "O'quvchilar",
+        "subtitle": "O'quvchilar yozuvlarini boshqarish",
+        "add_title": "O'quvchi qo'shish",
+        "search_placeholder": "O'quvchilarni qidirish...",
+        "filter_all_classes": "Barcha sinflar",
+        "filter_all_payment": "Barcha to'lov holatlari",
+        "export": "Eksport",
+        "not_found_title": "O'quvchi topilmadi",
+        "not_found_desc": "Qidiruv yoki filtrlarni o'zgartirib ko'ring.",
+        "form_title": "Yangi o'quvchini ro'yxatdan o'tkazish",
+        "register_btn": "Ro'yxatdan o'tkazish"
+    },
+    "teachers_page": {
+        "title": "O'qituvchilar",
+        "subtitle": "Maktab o'qituvchilarini boshqarish",
+        "add_button": "O'qituvchi qo'shish",
+        "search_placeholder": "Ism yoki fan bo'yicha qidirish...",
+        "active_tab": "Faol o'qituvchilar",
+        "terminated_tab": "Ishdan bo'shatilganlar",
+        "not_found": "Qidiruvga mos o'qituvchi topilmadi.",
+        "form_title": "Yangi o'qituvchi qo'shish",
+        "save_btn": "Saqlash"
+    },
+    "login_page": {
+        "title": "Maktab Admini",
+        "subtitle": "Hisobingizga kiring",
+        "username": "Foydalanuvchi nomi",
+        "password": "Parol",
+        "sign_in": "Kirish",
+        "error_invalid": "Noto'g'ri ma'lumotlar",
+        "demo_text": "Demo ma'lumotlar: admin / admin123"
+    },
+    "parents_page": {
+        "title": "Ota-onalar",
+        "coming_soon": "Ota-onalar bo'limi tez orada..."
+    },
+    "payments_page": {
+        "title": "To'lovlar",
+        "coming_soon": "To'lovlarni boshqarish tez orada..."
+    },
+    "class_page": {
+        "title": "Sinf Boshqaruvi",
+        "coming_soon": "Sinf boshqaruvi tez orada..."
+    },
+    "common": {
+        "cancel": "Bekor qilish",
+        "name": "Ism",
+        "full_name": "To'liq ism",
+        "first_name": "Ism",
+        "last_name": "Familiya",
+        "parent_name": "Ota-onasining ismi",
+        "phone_number": "Telefon raqami",
+        "birth_certificate": "Tug'ilganlik haqida guvohnoma",
+        "class": "Sinf",
+        "class_grade": "Sinf",
+        "address": "Manzil",
+        "full_address": "To'liq manzil",
+        "status": "Holati",
+        "payment_status": "To'lov holati",
+        "actions": "Amallar",
+        "active": "Faol",
+        "edit": "Tahrirlash",
+        "subject": "Fan",
+        "degree": "Daraja",
+        "dob": "Tug'ilgan sana",
+        "termination_reason": "Ishdan bo'shatish sababi",
+        "select_class": "Sinfni tanlang",
+        "select_degree": "Darajani tanlang"
+    }
+}

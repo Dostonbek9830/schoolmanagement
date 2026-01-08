@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Save, X } from 'lucide-react';
 import './Teachers.css'; // Reusing/Creating styles
 
 const AddTeacher = ({ onSubmit, onCancel }) => {
+    const { t } = useTranslation();
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -29,7 +31,7 @@ const AddTeacher = ({ onSubmit, onCancel }) => {
     return (
         <form onSubmit={handleSubmit} className="teacher-form">
             <div className="form-header">
-                <h2 className="form-title">Add New Teacher</h2>
+                <h2 className="form-title">{t('teachers_page.form_title')}</h2>
                 <button type="button" onClick={onCancel} className="btn-icon">
                     <X size={20} />
                 </button>
@@ -37,7 +39,7 @@ const AddTeacher = ({ onSubmit, onCancel }) => {
 
             <div className="form-grid">
                 <div className="form-group">
-                    <label>First Name</label>
+                    <label>{t('common.first_name')}</label>
                     <input
                         type="text"
                         name="firstName"
@@ -49,7 +51,7 @@ const AddTeacher = ({ onSubmit, onCancel }) => {
                 </div>
 
                 <div className="form-group">
-                    <label>Last Name</label>
+                    <label>{t('common.last_name')}</label>
                     <input
                         type="text"
                         name="lastName"
@@ -61,7 +63,7 @@ const AddTeacher = ({ onSubmit, onCancel }) => {
                 </div>
 
                 <div className="form-group">
-                    <label>Date of Birthday</label>
+                    <label>{t('common.dob')}</label>
                     <input
                         type="date"
                         name="dob"
@@ -72,7 +74,7 @@ const AddTeacher = ({ onSubmit, onCancel }) => {
                 </div>
 
                 <div className="form-group">
-                    <label>Phone Number</label>
+                    <label>{t('common.phone_number')}</label>
                     <input
                         type="tel"
                         name="phoneNumber"
@@ -84,14 +86,14 @@ const AddTeacher = ({ onSubmit, onCancel }) => {
                 </div>
 
                 <div className="form-group">
-                    <label>Degree</label>
+                    <label>{t('common.degree')}</label>
                     <select
                         name="degree"
                         value={formData.degree}
                         onChange={handleChange}
                         required
                     >
-                        <option value="">Select Degree</option>
+                        <option value="">{t('common.select_degree')}</option>
                         <option value="Bachelor">Bachelor</option>
                         <option value="Master">Master</option>
                         <option value="Associate teacher">Associate teacher</option>
@@ -100,8 +102,8 @@ const AddTeacher = ({ onSubmit, onCancel }) => {
                 </div>
 
                 <div className="form-group">
-                    <label>Subject</label>
-                     <input
+                    <label>{t('common.subject')}</label>
+                    <input
                         type="text"
                         name="subject"
                         value={formData.subject}
@@ -112,7 +114,7 @@ const AddTeacher = ({ onSubmit, onCancel }) => {
                 </div>
 
                 <div className="form-group full-width">
-                    <label>Full Address</label>
+                    <label>{t('common.full_address')}</label>
                     <textarea
                         name="address"
                         value={formData.address}
@@ -126,11 +128,11 @@ const AddTeacher = ({ onSubmit, onCancel }) => {
 
             <div className="form-actions">
                 <button type="button" onClick={onCancel} className="btn btn-outline">
-                    Cancel
+                    {t('common.cancel')}
                 </button>
                 <button type="submit" className="btn btn-primary">
                     <Save size={18} />
-                    Save Teacher
+                    {t('teachers_page.save_btn')}
                 </button>
             </div>
         </form>

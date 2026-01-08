@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Plus, Search, User } from 'lucide-react';
 import './Students.css';
 import StudentForm from './StudentForm';
 import { exportToFile, exportToCSV } from '../../utils/exportUtils';
 
 const Students = () => {
+    const { t } = useTranslation();
     const [showForm, setShowForm] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     // Mock data for initial view
@@ -60,17 +62,17 @@ const Students = () => {
         <div className="students-page">
             <div className="page-header">
                 <div>
-                    <h1 className="page-title">Students</h1>
-                    <p className="page-subtitle">Manage student records and admissions</p>
+                    <h1 className="page-title">{t('students_page.title')}</h1>
+                    <p className="page-subtitle">{t('students_page.subtitle')}</p>
                 </div>
                 <button
                     className="btn btn-primary"
                     onClick={() => setShowForm(!showForm)}
                 >
-                    {showForm ? 'Cancel' : (
+                    {showForm ? t('common.cancel') : (
                         <>
                             <Plus size={20} />
-                            Add Student
+                            {t('students_page.add_title')}
                         </>
                     )}
                 </button>
@@ -88,7 +90,7 @@ const Students = () => {
                             <Search size={20} className="search-icon" />
                             <input
                                 type="text"
-                                placeholder="Search students..."
+                                placeholder={t('students_page.search_placeholder')}
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
@@ -101,7 +103,7 @@ const Students = () => {
                                 className="filter-select"
                             >
                                 {classes.map(cls => (
-                                    <option key={cls} value={cls}>{cls === 'All' ? 'All Classes' : cls}</option>
+                                    <option key={cls} value={cls}>{cls === 'All' ? t('students_page.filter_all_classes') : cls}</option>
                                 ))}
                             </select>
 
@@ -111,7 +113,7 @@ const Students = () => {
                                 className="filter-select"
                             >
                                 {paymentStatuses.map(status => (
-                                    <option key={status} value={status}>{status === 'All' ? 'All Payment Status' : status}</option>
+                                    <option key={status} value={status}>{status === 'All' ? t('students_page.filter_all_payment') : status}</option>
                                 ))}
                             </select>
 
@@ -120,7 +122,7 @@ const Students = () => {
                                     className="btn-outline"
                                     onClick={() => setShowExportMenu(!showExportMenu)}
                                 >
-                                    Export
+                                    {t('students_page.export')}
                                 </button>
                                 {showExportMenu && (
                                     <div className="dropdown-menu">
@@ -136,12 +138,12 @@ const Students = () => {
                         <table className="students-table">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Class</th>
-                                    <th>Parent Name</th>
-                                    <th>Status</th>
-                                    <th>Payment Status</th>
-                                    <th>Actions</th>
+                                    <th>{t('common.name')}</th>
+                                    <th>{t('common.class')}</th>
+                                    <th>{t('common.parent_name')}</th>
+                                    <th>{t('common.status')}</th>
+                                    <th>{t('common.payment_status')}</th>
+                                    <th>{t('common.actions')}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -160,14 +162,14 @@ const Students = () => {
                                             </td>
                                             <td>{student.class}</td>
                                             <td>{student.parentName}</td>
-                                            <td><span className="badge badge-active">Active</span></td>
+                                            <td><span className="badge badge-active">{t('common.active')}</span></td>
                                             <td>
                                                 <span className={`badge badge-payment ${student.paymentStatus === 'Paid' ? 'badge-paid' : student.paymentStatus === 'Unpaid' ? 'badge-unpaid' : 'badge-due'}`}>
                                                     {student.paymentStatus}
                                                 </span>
                                             </td>
                                             <td>
-                                                <button className="btn-icon">Edit</button>
+                                                <button className="btn-icon">{t('common.edit')}</button>
                                             </td>
                                         </tr>
                                     ))
@@ -178,8 +180,8 @@ const Students = () => {
                                                 <div className="empty-icon">
                                                     <Search size={48} />
                                                 </div>
-                                                <h3>Student not found</h3>
-                                                <p>Try adjusting your search or filters to find what you're looking for.</p>
+                                                <h3>{t('students_page.not_found_title')}</h3>
+                                                <p>{t('students_page.not_found_desc')}</p>
                                             </div>
                                         </td>
                                     </tr>

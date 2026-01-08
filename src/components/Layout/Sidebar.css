@@ -106,3 +106,40 @@
     transform: translateX(0);
     /* No move for logout */
 }
+
+.sidebar-divider {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.05);
+    margin: 10px 0;
+}
+
+.language-selector {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.lang-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--sidebar-text);
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+}
+
+.lang-btn:hover {
+    background-color: var(--sidebar-hover-bg);
+    color: var(--sidebar-text-active);
+}
+
+.lang-btn.active {
+    background: var(--primary-gradient);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 2px 8px rgba(93, 95, 239, 0.3);
+}

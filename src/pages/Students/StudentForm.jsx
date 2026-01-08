@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Save } from 'lucide-react';
 
 const StudentForm = ({ onSubmit }) => {
+    const { t } = useTranslation();
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -27,11 +29,11 @@ const StudentForm = ({ onSubmit }) => {
 
     return (
         <form onSubmit={handleSubmit} className="student-form">
-            <h2 className="form-title">New Student Registration</h2>
+            <h2 className="form-title">{t('students_page.form_title')}</h2>
 
             <div className="form-grid">
                 <div className="form-group">
-                    <label>First Name</label>
+                    <label>{t('common.first_name')}</label>
                     <input
                         type="text"
                         name="firstName"
@@ -43,7 +45,7 @@ const StudentForm = ({ onSubmit }) => {
                 </div>
 
                 <div className="form-group">
-                    <label>Last Name</label>
+                    <label>{t('common.last_name')}</label>
                     <input
                         type="text"
                         name="lastName"
@@ -55,7 +57,7 @@ const StudentForm = ({ onSubmit }) => {
                 </div>
 
                 <div className="form-group">
-                    <label>Parents Name</label>
+                    <label>{t('common.parent_name')}</label>
                     <input
                         type="text"
                         name="parentName"
@@ -67,7 +69,7 @@ const StudentForm = ({ onSubmit }) => {
                 </div>
 
                 <div className="form-group">
-                    <label>Phone Number</label>
+                    <label>{t('common.phone_number')}</label>
                     <input
                         type="tel"
                         name="phoneNumber"
@@ -79,7 +81,7 @@ const StudentForm = ({ onSubmit }) => {
                 </div>
 
                 <div className="form-group">
-                    <label>Birth Certificate Number</label>
+                    <label>{t('common.birth_certificate')}</label>
                     <input
                         type="text"
                         name="birthCertificate"
@@ -91,14 +93,14 @@ const StudentForm = ({ onSubmit }) => {
                 </div>
 
                 <div className="form-group">
-                    <label>Class/Grade</label>
+                    <label>{t('common.class_grade')}</label>
                     <select
                         name="class"
                         value={formData.class}
                         onChange={handleChange}
                         required
                     >
-                        <option value="">Select Class</option>
+                        <option value="">{t('common.select_class')}</option>
                         <option value="Grade 1">Grade 1</option>
                         <option value="Grade 2">Grade 2</option>
                         <option value="Grade 3">Grade 3</option>
@@ -110,7 +112,7 @@ const StudentForm = ({ onSubmit }) => {
                 </div>
 
                 <div className="form-group full-width">
-                    <label>Address</label>
+                    <label>{t('common.address')}</label>
                     <textarea
                         name="address"
                         value={formData.address}
@@ -125,7 +127,7 @@ const StudentForm = ({ onSubmit }) => {
             <div className="form-actions">
                 <button type="submit" className="btn btn-primary">
                     <Save size={18} />
-                    Register Student
+                    {t('students_page.register_btn')}
                 </button>
             </div>
         </form>

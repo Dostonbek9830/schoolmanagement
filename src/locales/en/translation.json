@@ -1,0 +1,88 @@
+{
+    "dashboard": "Dashboard",
+    "students": "Students",
+    "payments": "Payments",
+    "parents": "Parents",
+    "teachers": "Teachers",
+    "class": "Class",
+    "logout": "Logout",
+    "dashboard_page": {
+        "title": "Dashboard",
+        "subtitle": "Overview of school performance",
+        "total_students": "Total Students",
+        "total_teachers": "Total Teachers",
+        "profit": "Profit",
+        "paid_students": "Paid Students",
+        "unpaid_students": "Unpaid Students"
+    },
+    "students_page": {
+        "title": "Students",
+        "subtitle": "Manage student records and admissions",
+        "add_title": "Add Student",
+        "search_placeholder": "Search students...",
+        "filter_all_classes": "All Classes",
+        "filter_all_payment": "All Payment Status",
+        "export": "Export",
+        "not_found_title": "Student not found",
+        "not_found_desc": "Try adjusting your search or filters to find what you're looking for.",
+        "form_title": "New Student Registration",
+        "register_btn": "Register Student"
+    },
+    "teachers_page": {
+        "title": "Teachers",
+        "subtitle": "Manage school teachers",
+        "add_button": "Add Teacher",
+        "search_placeholder": "Search by name or subject...",
+        "active_tab": "Active Teachers",
+        "terminated_tab": "Terminated",
+        "not_found": "No teachers found matching your search.",
+        "form_title": "Add New Teacher",
+        "save_btn": "Save Teacher"
+    },
+    "login_page": {
+        "title": "School Admin",
+        "subtitle": "Sign in to your account",
+        "username": "Username",
+        "password": "Password",
+        "sign_in": "Sign In",
+        "error_invalid": "Invalid credentials",
+        "demo_text": "Demo Credentials: admin / admin123"
+    },
+    "parents_page": {
+        "title": "Parents",
+        "coming_soon": "Parents directory coming soon..."
+    },
+    "payments_page": {
+        "title": "Payments",
+        "coming_soon": "Payments management coming soon..."
+    },
+    "class_page": {
+        "title": "Class Management",
+        "coming_soon": "Class management coming soon..."
+    },
+    "common": {
+        "cancel": "Cancel",
+        "name": "Name",
+        "full_name": "Full Name",
+        "first_name": "First Name",
+        "last_name": "Last Name",
+        "parent_name": "Parent Name",
+        "phone_number": "Phone Number",
+        "birth_certificate": "Birth Certificate Number",
+        "class": "Class",
+        "class_grade": "Class/Grade",
+        "address": "Address",
+        "full_address": "Full Address",
+        "status": "Status",
+        "payment_status": "Payment Status",
+        "actions": "Actions",
+        "active": "Active",
+        "edit": "Edit",
+        "subject": "Subject",
+        "degree": "Degree",
+        "dob": "Date of Birth",
+        "termination_reason": "Termination Reason",
+        "select_class": "Select Class",
+        "select_degree": "Select Degree"
+    }
+}

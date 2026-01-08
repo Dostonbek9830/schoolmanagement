@@ -1,0 +1,88 @@
+{
+    "dashboard": "Панель управления",
+    "students": "Студенты",
+    "payments": "Платежи",
+    "parents": "Родители",
+    "teachers": "Учителя",
+    "class": "Классы",
+    "logout": "Выйти",
+    "dashboard_page": {
+        "title": "Панель управления",
+        "subtitle": "Обзор показателей школы",
+        "total_students": "Всего студентов",
+        "total_teachers": "Всего учителей",
+        "profit": "Прибыль",
+        "paid_students": "Оплатившие",
+        "unpaid_students": "Не оплатившие"
+    },
+    "students_page": {
+        "title": "Студенты",
+        "subtitle": "Управление записями и приемом",
+        "add_title": "Добавить студента",
+        "search_placeholder": "Поиск студентов...",
+        "filter_all_classes": "Все классы",
+        "filter_all_payment": "Все статусы оплаты",
+        "export": "Экспорт",
+        "not_found_title": "Студент не найден",
+        "not_found_desc": "Попробуйте изменить поиск или фильтры.",
+        "form_title": "Регистрация нового студента",
+        "register_btn": "Зарегистрировать"
+    },
+    "teachers_page": {
+        "title": "Учителя",
+        "subtitle": "Управление учителями",
+        "add_button": "Добавить учителя",
+        "search_placeholder": "Поиск по имени или предмету...",
+        "active_tab": "Активные",
+        "terminated_tab": "Уволенные",
+        "not_found": "Учителя не найдены.",
+        "form_title": "Добавить нового учителя",
+        "save_btn": "Сохранить"
+    },
+    "login_page": {
+        "title": "Администратор школы",
+        "subtitle": "Войдите в свой аккаунт",
+        "username": "Имя пользователя",
+        "password": "Пароль",
+        "sign_in": "Войти",
+        "error_invalid": "Неверные учетные данные",
+        "demo_text": "Демо данные: admin / admin123"
+    },
+    "parents_page": {
+        "title": "Родители",
+        "coming_soon": "Каталог родителей скоро появится..."
+    },
+    "payments_page": {
+        "title": "Платежи",
+        "coming_soon": "Управление платежами скоро появится..."
+    },
+    "class_page": {
+        "title": "Управление классами",
+        "coming_soon": "Управление классами скоро появится..."
+    },
+    "common": {
+        "cancel": "Отмена",
+        "name": "Имя",
+        "full_name": "Полное имя",
+        "first_name": "Имя",
+        "last_name": "Фамилия",
+        "parent_name": "Имя родителя",
+        "phone_number": "Номер телефона",
+        "birth_certificate": "Свидетельство о рождении",
+        "class": "Класс",
+        "class_grade": "Класс/Грейд",
+        "address": "Адрес",
+        "full_address": "Полный адрес",
+        "status": "Статус",
+        "payment_status": "Статус оплаты",
+        "actions": "Действия",
+        "active": "Активный",
+        "edit": "Редактировать",
+        "subject": "Предмет",
+        "degree": "Степень",
+        "dob": "Дата рождения",
+        "termination_reason": "Причина увольнения",
+        "select_class": "Выберите класс",
+        "select_degree": "Выберите степень"
+    }
+}
