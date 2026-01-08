@@ -8,8 +8,9 @@ const Students = () => {
     const [searchTerm, setSearchTerm] = useState('');
     // Mock data for initial view
     const [students, setStudents] = useState([
-        { id: 1, firstName: 'John', lastName: 'Doe', class: 'Grade 10', parentName: 'Jane Doe' },
-        { id: 2, firstName: 'Alice', lastName: 'Smith', class: 'Grade 11', parentName: 'Bob Smith' },
+        { id: 1, firstName: 'John', lastName: 'Doe', class: 'Grade 10', parentName: 'Jane Doe', paymentStatus: 'Paid' },
+        { id: 2, firstName: 'Alice', lastName: 'Smith', class: 'Grade 11', parentName: 'Bob Smith', paymentStatus: 'Due to deadline' },
+        { id: 3, firstName: 'Bob', lastName: 'Johnson', class: 'Grade 12', parentName: 'Sara Johnson', paymentStatus: 'Unpaid' },
     ]);
 
     const handleAddStudent = (newStudent) => {
@@ -68,6 +69,7 @@ const Students = () => {
                                     <th>Class</th>
                                     <th>Parent Name</th>
                                     <th>Status</th>
+                                    <th>Payment Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -87,6 +89,11 @@ const Students = () => {
                                         <td>{student.class}</td>
                                         <td>{student.parentName}</td>
                                         <td><span className="badge badge-active">Active</span></td>
+                                        <td>
+                                            <span className={`badge badge-payment ${student.paymentStatus === 'Paid' ? 'badge-paid' : student.paymentStatus === 'Unpaid' ? 'badge-unpaid' : 'badge-due'}`}>
+                                                {student.paymentStatus}
+                                            </span>
+                                        </td>
                                         <td>
                                             <button className="btn-icon">Edit</button>
                                         </td>
