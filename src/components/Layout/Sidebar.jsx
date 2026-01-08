@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { User, Users, CreditCard, GraduationCap, LayoutDashboard, LogOut } from 'lucide-react';
+import { User, Users, CreditCard, GraduationCap, LayoutDashboard, LogOut, UserCheck } from 'lucide-react';
 import './Sidebar.css';
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -42,6 +42,10 @@ const Sidebar = () => {
                 <NavLink to="/parents" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                     <Users size={20} />
                     <span>Parents</span>
+                </NavLink>
+                <NavLink to="/teachers" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+                    <UserCheck size={20} />
+                    <span>Teachers</span>
                 </NavLink>
                 <NavLink to="/class" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                     <GraduationCap size={20} />

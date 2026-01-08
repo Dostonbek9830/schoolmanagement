@@ -7,6 +7,7 @@ import Students from './pages/Students/Students';
 import Payments from './pages/Payments/Payments';
 import Parents from './pages/Parents/Parents';
 import Class from './pages/Class/Class';
+import Teachers from './pages/Teachers/Teachers';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -34,6 +35,8 @@ function App() {
                         <Route path="/students" element={<Students />} />
                         <Route path="/payments" element={<Payments />} />
                         <Route path="/parents" element={<Parents />} />
+                        <Route path="/parents" element={<Parents />} />
+                        <Route path="/teachers" element={<Teachers />} />
                         <Route path="/class" element={<Class />} />
                     </Route>
 
