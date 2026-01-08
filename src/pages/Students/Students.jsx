@@ -11,9 +11,9 @@ const Students = () => {
     const [searchTerm, setSearchTerm] = useState('');
     // Mock data for initial view
     const [students, setStudents] = useState([
-        { id: 1, firstName: 'John', lastName: 'Doe', class: 'Grade 10', parentName: 'Jane Doe', paymentStatus: 'Paid' },
-        { id: 2, firstName: 'Alice', lastName: 'Smith', class: 'Grade 11', parentName: 'Bob Smith', paymentStatus: 'Due to deadline' },
-        { id: 3, firstName: 'Bob', lastName: 'Johnson', class: 'Grade 12', parentName: 'Sara Johnson', paymentStatus: 'Unpaid' },
+        { id: 1, firstName: 'Dostonbek', lastName: 'Yoqubov', class: '10-sinf', parentName: 'Dostonbek Bekmatov', paymentStatus: 'Paid' },
+        { id: 2, firstName: 'Anvar', lastName: 'Oripov', class: '11-sinf', parentName: 'Tolibjon Hakimov', paymentStatus: 'Due to deadline' },
+        { id: 3, firstName: 'Doston', lastName: 'Bekmatov', class: '12-sinf', parentName: 'Eldor Tursunov', paymentStatus: 'Unpaid' },
     ]);
 
     const [selectedClass, setSelectedClass] = useState('All');
@@ -25,6 +25,7 @@ const Students = () => {
     const paymentStatuses = ['All', 'Paid', 'Unpaid', 'Due to deadline'];
 
     const handleAddStudent = (newStudent) => {
+        console.log(newStudent);
         setStudents([...students, { ...newStudent, id: students.length + 1 }]);
         setShowForm(false);
     };
@@ -113,7 +114,12 @@ const Students = () => {
                                 className="filter-select"
                             >
                                 {paymentStatuses.map(status => (
-                                    <option key={status} value={status}>{status === 'All' ? t('students_page.filter_all_payment') : status}</option>
+                                    <option key={status} value={status}>
+                                        {status === 'All' ? t('students_page.filter_all_payment') :
+                                            status === 'Paid' ? t('payment_statuses.paid') :
+                                                status === 'Unpaid' ? t('payment_statuses.unpaid') :
+                                                    t('payment_statuses.due_to_deadline')}
+                                    </option>
                                 ))}
                             </select>
 
@@ -165,7 +171,9 @@ const Students = () => {
                                             <td><span className="badge badge-active">{t('common.active')}</span></td>
                                             <td>
                                                 <span className={`badge badge-payment ${student.paymentStatus === 'Paid' ? 'badge-paid' : student.paymentStatus === 'Unpaid' ? 'badge-unpaid' : 'badge-due'}`}>
-                                                    {student.paymentStatus}
+                                                    {student.paymentStatus === 'Paid' ? t('payment_statuses.paid') :
+                                                        student.paymentStatus === 'Unpaid' ? t('payment_statuses.unpaid') :
+                                                            t('payment_statuses.due_to_deadline')}
                                                 </span>
                                             </td>
                                             <td>

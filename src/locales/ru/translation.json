@@ -84,5 +84,25 @@
         "termination_reason": "Причина увольнения",
         "select_class": "Выберите класс",
         "select_degree": "Выберите степень"
+    },
+    "grades": {
+        "grade_1": "1 класс",
+        "grade_2": "2 класс",
+        "grade_3": "3 класс",
+        "grade_9": "9 класс",
+        "grade_10": "10 класс",
+        "grade_11": "11 класс",
+        "grade_12": "12 класс"
+    },
+    "degrees": {
+        "bachelor": "Бакалавр",
+        "master": "Магистр",
+        "associate_teacher": "Ассистент преподавателя",
+        "phd": "Доктор наук"
+    },
+    "payment_statuses": {
+        "paid": "Оплачено",
+        "unpaid": "Не оплачено",
+        "due_to_deadline": "Срок оплаты подходит"
     }
 }

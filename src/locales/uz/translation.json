@@ -84,5 +84,25 @@
         "termination_reason": "Ishdan bo'shatish sababi",
         "select_class": "Sinfni tanlang",
         "select_degree": "Darajani tanlang"
+    },
+    "grades": {
+        "grade_1": "1-sinf",
+        "grade_2": "2-sinf",
+        "grade_3": "3-sinf",
+        "grade_9": "9-sinf",
+        "grade_10": "10-sinf",
+        "grade_11": "11-sinf",
+        "grade_12": "12-sinf"
+    },
+    "degrees": {
+        "bachelor": "Bakalavr",
+        "master": "Magistr",
+        "associate_teacher": "Yordamchi o'qituvchi",
+        "phd": "Fan doktori"
+    },
+    "payment_statuses": {
+        "paid": "To'langan",
+        "unpaid": "To'lanmagan",
+        "due_to_deadline": "Muddat yaqinlashmoqda"
     }
 }

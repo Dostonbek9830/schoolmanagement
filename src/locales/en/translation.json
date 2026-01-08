@@ -84,5 +84,25 @@
         "termination_reason": "Termination Reason",
         "select_class": "Select Class",
         "select_degree": "Select Degree"
+    },
+    "grades": {
+        "grade_1": "Grade 1",
+        "grade_2": "Grade 2",
+        "grade_3": "Grade 3",
+        "grade_9": "Grade 9",
+        "grade_10": "Grade 10",
+        "grade_11": "Grade 11",
+        "grade_12": "Grade 12"
+    },
+    "degrees": {
+        "bachelor": "Bachelor",
+        "master": "Master",
+        "associate_teacher": "Associate Teacher",
+        "phd": "PhD"
+    },
+    "payment_statuses": {
+        "paid": "Paid",
+        "unpaid": "Unpaid",
+        "due_to_deadline": "Due to Deadline"
     }
 }

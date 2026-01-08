@@ -94,10 +94,10 @@ const AddTeacher = ({ onSubmit, onCancel }) => {
                         required
                     >
                         <option value="">{t('common.select_degree')}</option>
-                        <option value="Bachelor">Bachelor</option>
-                        <option value="Master">Master</option>
-                        <option value="Associate teacher">Associate teacher</option>
-                        <option value="Phd">Phd</option>
+                        <option value="Bachelor">{t('degrees.bachelor')}</option>
+                        <option value="Master">{t('degrees.master')}</option>
+                        <option value="Associate teacher">{t('degrees.associate_teacher')}</option>
+                        <option value="Phd">{t('degrees.phd')}</option>
                     </select>
                 </div>
 

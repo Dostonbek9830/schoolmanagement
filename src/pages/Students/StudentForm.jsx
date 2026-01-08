@@ -101,13 +101,13 @@ const StudentForm = ({ onSubmit }) => {
                         required
                     >
                         <option value="">{t('common.select_class')}</option>
-                        <option value="Grade 1">Grade 1</option>
-                        <option value="Grade 2">Grade 2</option>
-                        <option value="Grade 3">Grade 3</option>
-                        <option value="Grade 9">Grade 9</option>
-                        <option value="Grade 10">Grade 10</option>
-                        <option value="Grade 11">Grade 11</option>
-                        <option value="Grade 12">Grade 12</option>
+                        <option value="Grade 1">{t('grades.grade_1')}</option>
+                        <option value="Grade 2">{t('grades.grade_2')}</option>
+                        <option value="Grade 3">{t('grades.grade_3')}</option>
+                        <option value="Grade 9">{t('grades.grade_9')}</option>
+                        <option value="Grade 10">{t('grades.grade_10')}</option>
+                        <option value="Grade 11">{t('grades.grade_11')}</option>
+                        <option value="Grade 12">{t('grades.grade_12')}</option>
                     </select>
                 </div>
 

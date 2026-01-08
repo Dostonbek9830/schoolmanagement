@@ -14,22 +14,14 @@ const Teachers = () => {
     const [teachers, setTeachers] = useState([
         {
             id: 1,
-            firstName: 'Sarah',
-            lastName: 'Connor',
-            subject: 'Mathematics',
+            firstName: 'Dostonbek',
+            lastName: 'Yoqubov',
+            subject: 'Ingliz tili',
             degree: 'Master',
-            phoneNumber: '+1 234 567 8900',
+            phoneNumber: '+998900512991',
             status: 'Active'
         },
-        {
-            id: 2,
-            firstName: 'James',
-            lastName: 'Cameron',
-            subject: 'Science',
-            degree: 'Phd',
-            phoneNumber: '+1 987 654 3210',
-            status: 'On Leave'
-        },
+
         // Mock Terminated Teacher
         {
             id: 3,

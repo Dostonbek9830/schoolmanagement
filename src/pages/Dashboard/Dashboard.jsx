@@ -13,35 +13,30 @@ const Dashboard = () => {
             value: '120',
             icon: <GraduationCap size={24} />,
             color: 'blue',
-            trend: '+12% from last month'
         },
         {
             title: t('dashboard_page.total_teachers'),
             value: '12',
             icon: <Users size={24} />,
             color: 'purple',
-            trend: 'Stable'
         },
         {
             title: t('dashboard_page.profit'),
             value: '45,000,000 UZS',
             icon: <DollarSign size={24} />,
             color: 'green',
-            trend: '+8% from last month'
         },
         {
             title: t('dashboard_page.paid_students'),
             value: '85',
             icon: <UserCheck size={24} />,
             color: 'emerald',
-            trend: '70% of total'
         },
         {
             title: t('dashboard_page.unpaid_students'),
             value: '35',
             icon: <UserX size={24} />,
             color: 'red',
-            trend: 'Action needed'
         }
     ];
 
