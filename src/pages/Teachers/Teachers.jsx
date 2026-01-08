@@ -25,13 +25,13 @@ const Teachers = () => {
         // Mock Terminated Teacher
         {
             id: 3,
-            firstName: 'Arnold',
-            lastName: 'Schwarzenegger',
-            subject: 'Physical Education',
-            degree: 'Bachelor',
-            phoneNumber: '+1 555 123 4567',
+            firstName: 'Sarvar',
+            lastName: 'Muhammadaminov',
+            subject: 'Ingliz tili',
+            degree: 'Bakalavr',
+            phoneNumber: '+998908552246',
             status: 'Terminated',
-            terminationReason: 'Contract Expired'
+            terminationReason: 'Shartnoma muddati tugadi'
         }
     ]);
 
