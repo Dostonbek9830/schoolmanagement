@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Login from './pages/Login/Login';
 import DashboardLayout from './components/Layout/DashboardLayout';
+import Dashboard from './pages/Dashboard/Dashboard';
 import Students from './pages/Students/Students';
 import Payments from './pages/Payments/Payments';
 import Parents from './pages/Parents/Parents';
@@ -29,7 +30,7 @@ function App() {
                             <DashboardLayout />
                         </ProtectedRoute>
                     }>
-                        <Route path="/dashboard" element={<Navigate to="/students" replace />} />
+                        <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/students" element={<Students />} />
                         <Route path="/payments" element={<Payments />} />
                         <Route path="/parents" element={<Parents />} />
@@ -37,7 +38,7 @@ function App() {
                     </Route>
 
                     {/* Default redirect */}
-                    <Route path="/" element={<Navigate to="/students" replace />} />
+                    <Route path="/" element={<Navigate to="/dashboard" replace />} />
                 </Routes>
             </Router>
         </AuthProvider>
