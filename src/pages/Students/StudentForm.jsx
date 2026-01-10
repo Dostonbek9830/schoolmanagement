@@ -5,13 +5,12 @@ import { Save } from 'lucide-react';
 const StudentForm = ({ onSubmit }) => {
     const { t } = useTranslation();
     const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        parentName: '',
+        name: '',
+        grade: '',
+        age: '',
+        phone: '',
         address: '',
-        phoneNumber: '',
-        birthCertificate: '',
-        class: ''
+        paymentStatus: 'Unpaid'
     });
 
     const handleChange = (e) => {
@@ -24,7 +23,12 @@ const StudentForm = ({ onSubmit }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit(formData);
+        // Convert age to number
+        const dataToSubmit = {
+            ...formData,
+            age: formData.age ? parseInt(formData.age) : null
+        };
+        onSubmit(dataToSubmit);
     };
 
     return (
@@ -33,70 +37,22 @@ const StudentForm = ({ onSubmit }) => {
 
             <div className="form-grid">
                 <div className="form-group">
-                    <label>{t('common.first_name')}</label>
+                    <label>{t('common.name')}</label>
                     <input
                         type="text"
-                        name="firstName"
-                        value={formData.firstName}
+                        name="name"
+                        value={formData.name}
                         onChange={handleChange}
                         required
-                        placeholder="e.g. John"
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label>{t('common.last_name')}</label>
-                    <input
-                        type="text"
-                        name="lastName"
-                        value={formData.lastName}
-                        onChange={handleChange}
-                        required
-                        placeholder="e.g. Doe"
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label>{t('common.parent_name')}</label>
-                    <input
-                        type="text"
-                        name="parentName"
-                        value={formData.parentName}
-                        onChange={handleChange}
-                        required
-                        placeholder="e.g. Jane Doe"
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label>{t('common.phone_number')}</label>
-                    <input
-                        type="tel"
-                        name="phoneNumber"
-                        value={formData.phoneNumber}
-                        onChange={handleChange}
-                        required
-                        placeholder="e.g. +1 234 567 8900"
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label>{t('common.birth_certificate')}</label>
-                    <input
-                        type="text"
-                        name="birthCertificate"
-                        value={formData.birthCertificate}
-                        onChange={handleChange}
-                        required
-                        placeholder="e.g. BC-12345678"
+                        placeholder="e.g. John Doe"
                     />
                 </div>
 
                 <div className="form-group">
                     <label>{t('common.class_grade')}</label>
                     <select
-                        name="class"
-                        value={formData.class}
+                        name="grade"
+                        value={formData.grade}
                         onChange={handleChange}
                         required
                     >
@@ -111,13 +67,50 @@ const StudentForm = ({ onSubmit }) => {
                     </select>
                 </div>
 
+                <div className="form-group">
+                    <label>Age</label>
+                    <input
+                        type="number"
+                        name="age"
+                        value={formData.age}
+                        onChange={handleChange}
+                        placeholder="e.g. 15"
+                        min="5"
+                        max="25"
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label>{t('common.phone_number')}</label>
+                    <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        placeholder="e.g. +1 234 567 8900"
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label>{t('common.payment_status')}</label>
+                    <select
+                        name="paymentStatus"
+                        value={formData.paymentStatus}
+                        onChange={handleChange}
+                        required
+                    >
+                        <option value="Paid">{t('payment_statuses.paid')}</option>
+                        <option value="Unpaid">{t('payment_statuses.unpaid')}</option>
+                        <option value="Due to deadline">{t('payment_statuses.due_to_deadline')}</option>
+                    </select>
+                </div>
+
                 <div className="form-group full-width">
                     <label>{t('common.address')}</label>
                     <textarea
                         name="address"
                         value={formData.address}
                         onChange={handleChange}
-                        required
                         placeholder="Full residential address"
                         rows="3"
                     ></textarea>

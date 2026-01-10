@@ -1,41 +1,77 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Plus, Search, User } from 'lucide-react';
+import { Plus, Search, User, Trash2 } from 'lucide-react';
 import './Students.css';
 import StudentForm from './StudentForm';
 import { exportToFile, exportToCSV } from '../../utils/exportUtils';
+import { studentsAPI } from '../../services/api';
 
 const Students = () => {
     const { t } = useTranslation();
     const [showForm, setShowForm] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
-    // Mock data for initial view
-    const [students, setStudents] = useState([
-        { id: 1, firstName: 'Dostonbek', lastName: 'Yoqubov', class: '10-sinf', parentName: 'Dostonbek Bekmatov', paymentStatus: 'Paid' },
-        { id: 2, firstName: 'Anvar', lastName: 'Oripov', class: '11-sinf', parentName: 'Tolibjon Hakimov', paymentStatus: 'Due to deadline' },
-        { id: 3, firstName: 'Doston', lastName: 'Bekmatov', class: '12-sinf', parentName: 'Eldor Tursunov', paymentStatus: 'Unpaid' },
-    ]);
+    const [students, setStudents] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     const [selectedClass, setSelectedClass] = useState('All');
     const [selectedPaymentStatus, setSelectedPaymentStatus] = useState('All');
     const [showExportMenu, setShowExportMenu] = useState(false);
 
+    // Fetch students from backend on component mount
+    useEffect(() => {
+        fetchStudents();
+    }, []);
+
+    const fetchStudents = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+            const data = await studentsAPI.getAll();
+            setStudents(data);
+        } catch (err) {
+            setError(err.message);
+            console.error('Failed to fetch students:', err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     // Derived data for filters
-    const classes = ['All', ...new Set(students.map(student => student.class))];
+    const classes = ['All', ...new Set(students.map(student => student.grade || student.class))];
     const paymentStatuses = ['All', 'Paid', 'Unpaid', 'Due to deadline'];
 
-    const handleAddStudent = (newStudent) => {
-        console.log(newStudent);
-        setStudents([...students, { ...newStudent, id: students.length + 1 }]);
-        setShowForm(false);
+    const handleAddStudent = async (newStudent) => {
+        try {
+            const createdStudent = await studentsAPI.create(newStudent);
+            setStudents([createdStudent, ...students]);
+            setShowForm(false);
+        } catch (err) {
+            alert('Failed to add student: ' + err.message);
+            console.error('Error adding student:', err);
+        }
+    };
+
+    const handleDeleteStudent = async (id) => {
+        if (!confirm(t('students_page.confirm_delete') || 'Are you sure you want to delete this student?')) {
+            return;
+        }
+
+        try {
+            await studentsAPI.delete(id);
+            setStudents(students.filter(s => s.id !== id));
+        } catch (err) {
+            alert('Failed to delete student: ' + err.message);
+            console.error('Error deleting student:', err);
+        }
     };
 
     const filteredStudents = students.filter(student => {
-        const matchesSearch = student.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            student.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            student.parentName.toLowerCase().includes(searchTerm.toLowerCase());
+        const name = student.name || `${student.firstName} ${student.lastName}`;
+        const grade = student.grade || student.class;
+        const matchesSearch = name.toLowerCase().includes(searchTerm.toLowerCase());
 
-        const matchesClass = selectedClass === 'All' || student.class === selectedClass;
+        const matchesClass = selectedClass === 'All' || grade === selectedClass;
         const matchesPayment = selectedPaymentStatus === 'All' || student.paymentStatus === selectedPaymentStatus;
 
         return matchesSearch && matchesClass && matchesPayment;
@@ -141,61 +177,84 @@ const Students = () => {
                     </div>
 
                     <div className="table-container">
-                        <table className="students-table">
-                            <thead>
-                                <tr>
-                                    <th>{t('common.name')}</th>
-                                    <th>{t('common.class')}</th>
-                                    <th>{t('common.parent_name')}</th>
-                                    <th>{t('common.status')}</th>
-                                    <th>{t('common.payment_status')}</th>
-                                    <th>{t('common.actions')}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {filteredStudents.length > 0 ? (
-                                    filteredStudents.map(student => (
-                                        <tr key={student.id}>
-                                            <td>
-                                                <div className="student-cell">
-                                                    <div className="avatar-placeholder">
-                                                        {student.firstName[0]}{student.lastName[0]}
+                        {loading ? (
+                            <div className="empty-state">
+                                <p>Loading students...</p>
+                            </div>
+                        ) : error ? (
+                            <div className="empty-state">
+                                <p style={{ color: 'red' }}>Error: {error}</p>
+                                <button className="btn btn-primary" onClick={fetchStudents}>Retry</button>
+                            </div>
+                        ) : (
+                            <table className="students-table">
+                                <thead>
+                                    <tr>
+                                        <th>{t('common.name')}</th>
+                                        <th>{t('common.class')}</th>
+                                        <th>Phone</th>
+                                        <th>{t('common.status')}</th>
+                                        <th>{t('common.payment_status')}</th>
+                                        <th>{t('common.actions')}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {filteredStudents.length > 0 ? (
+                                        filteredStudents.map(student => {
+                                            const displayName = student.name || `${student.firstName || ''} ${student.lastName || ''}`.trim();
+                                            const displayGrade = student.grade || student.class || 'N/A';
+                                            const initials = displayName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+
+                                            return (
+                                                <tr key={student.id}>
+                                                    <td>
+                                                        <div className="student-cell">
+                                                            <div className="avatar-placeholder">
+                                                                {initials}
+                                                            </div>
+                                                            <div>
+                                                                <div className="student-name">{displayName}</div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>{displayGrade}</td>
+                                                    <td>{student.phone || 'N/A'}</td>
+                                                    <td><span className="badge badge-active">{t('common.active')}</span></td>
+                                                    <td>
+                                                        <span className={`badge badge-payment ${student.paymentStatus === 'Paid' ? 'badge-paid' : student.paymentStatus === 'Unpaid' ? 'badge-unpaid' : 'badge-due'}`}>
+                                                            {student.paymentStatus === 'Paid' ? t('payment_statuses.paid') :
+                                                                student.paymentStatus === 'Unpaid' ? t('payment_statuses.unpaid') :
+                                                                    t('payment_statuses.due_to_deadline')}
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <button
+                                                            className="btn-icon"
+                                                            onClick={() => handleDeleteStudent(student.id)}
+                                                            style={{ color: '#ef4444' }}
+                                                        >
+                                                            <Trash2 size={16} />
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            );
+                                        })
+                                    ) : (
+                                        <tr>
+                                            <td colSpan="6">
+                                                <div className="empty-state">
+                                                    <div className="empty-icon">
+                                                        <Search size={48} />
                                                     </div>
-                                                    <div>
-                                                        <div className="student-name">{student.firstName} {student.lastName}</div>
-                                                    </div>
+                                                    <h3>{t('students_page.not_found_title')}</h3>
+                                                    <p>{t('students_page.not_found_desc')}</p>
                                                 </div>
-                                            </td>
-                                            <td>{student.class}</td>
-                                            <td>{student.parentName}</td>
-                                            <td><span className="badge badge-active">{t('common.active')}</span></td>
-                                            <td>
-                                                <span className={`badge badge-payment ${student.paymentStatus === 'Paid' ? 'badge-paid' : student.paymentStatus === 'Unpaid' ? 'badge-unpaid' : 'badge-due'}`}>
-                                                    {student.paymentStatus === 'Paid' ? t('payment_statuses.paid') :
-                                                        student.paymentStatus === 'Unpaid' ? t('payment_statuses.unpaid') :
-                                                            t('payment_statuses.due_to_deadline')}
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <button className="btn-icon">{t('common.edit')}</button>
                                             </td>
                                         </tr>
-                                    ))
-                                ) : (
-                                    <tr>
-                                        <td colSpan="6">
-                                            <div className="empty-state">
-                                                <div className="empty-icon">
-                                                    <Search size={48} />
-                                                </div>
-                                                <h3>{t('students_page.not_found_title')}</h3>
-                                                <p>{t('students_page.not_found_desc')}</p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                )}
-                            </tbody>
-                        </table>
+                                    )}
+                                </tbody>
+                            </table>
+                        )}
                     </div>
                 </div>
             )}
