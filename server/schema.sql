@@ -4,6 +4,26 @@
 USE SchoolDB;
 GO
 
+-- Create Classes table if it doesn't exist
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Classes' AND xtype='U')
+BEGIN
+    CREATE TABLE Classes (
+        id INT PRIMARY KEY IDENTITY(1,1),
+        className NVARCHAR(100) NOT NULL,
+        gradeLevel INT NOT NULL, -- 0 for Kindergarten, 1-12 for grades
+        teacherName NVARCHAR(100),
+        roomNumber NVARCHAR(50),
+        createdAt DATETIME DEFAULT GETDATE()
+    );
+    
+    PRINT 'Classes table created successfully';
+END
+ELSE
+BEGIN
+    PRINT 'Classes table already exists';
+END
+GO
+
 -- Create Students table if it doesn't exist
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Students' AND xtype='U')
 BEGIN
@@ -11,17 +31,26 @@ BEGIN
         id INT PRIMARY KEY IDENTITY(1,1),
         name NVARCHAR(100) NOT NULL,
         grade NVARCHAR(50) NOT NULL,
+        classId INT, -- Foreign key to Classes table
         age INT,
         phone NVARCHAR(20),
         address NVARCHAR(255),
         paymentStatus NVARCHAR(20) DEFAULT 'Unpaid',
-        createdAt DATETIME DEFAULT GETDATE()
+        createdAt DATETIME DEFAULT GETDATE(),
+        CONSTRAINT FK_Students_Classes FOREIGN KEY (classId) REFERENCES Classes(id)
     );
     
     PRINT 'Students table created successfully';
 END
 ELSE
 BEGIN
+    -- Add classId column if it doesn't exist
+    IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('Students') AND name = 'classId')
+    BEGIN
+        ALTER TABLE Students ADD classId INT;
+        ALTER TABLE Students ADD CONSTRAINT FK_Students_Classes FOREIGN KEY (classId) REFERENCES Classes(id);
+        PRINT 'Added classId column to Students table';
+    END
     PRINT 'Students table already exists';
 END
 GO

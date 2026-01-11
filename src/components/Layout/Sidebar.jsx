@@ -5,7 +5,7 @@ import './Sidebar.css';
 import { useAuth } from '../../contexts/AuthContext';
 import { useTranslation } from 'react-i18next';
 
-const Sidebar = () => {
+const Sidebar = ({ closeMobileMenu }) => {
     const { logout } = useAuth();
     const { t, i18n } = useTranslation();
 
@@ -33,27 +33,27 @@ const Sidebar = () => {
             </div>
 
             <nav className="sidebar-nav">
-                <NavLink to="/dashboard" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} end>
+                <NavLink to="/dashboard" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} end onClick={closeMobileMenu}>
                     <LayoutDashboard size={20} />
                     <span>{t('dashboard')}</span>
                 </NavLink>
-                <NavLink to="/students" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+                <NavLink to="/students" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} onClick={closeMobileMenu}>
                     <User size={20} />
                     <span>{t('students')}</span>
                 </NavLink>
-                <NavLink to="/payments" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+                <NavLink to="/payments" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} onClick={closeMobileMenu}>
                     <CreditCard size={20} />
                     <span>{t('payments')}</span>
                 </NavLink>
-                <NavLink to="/parents" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+                <NavLink to="/parents" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} onClick={closeMobileMenu}>
                     <Users size={20} />
                     <span>{t('parents')}</span>
                 </NavLink>
-                <NavLink to="/teachers" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+                <NavLink to="/teachers" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} onClick={closeMobileMenu}>
                     <UserCheck size={20} />
                     <span>{t('teachers')}</span>
                 </NavLink>
-                <NavLink to="/class" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+                <NavLink to="/class" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} onClick={closeMobileMenu}>
                     <GraduationCap size={20} />
                     <span>{t('class')}</span>
                 </NavLink>

@@ -3,17 +3,19 @@ import express from 'express';
 import cors from 'cors';
 import { connectDB } from './config/database.js';
 import studentsRouter from './routes/students.js';
+import classesRouter from './routes/classes.js';
 import dashboardRouter from './routes/dashboard.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
+// Middleware       
 app.use(cors());
 app.use(express.json());
 
 // Routes
 app.use('/api/students', studentsRouter);
+app.use('/api/classes', classesRouter);
 app.use('/api/dashboard', dashboardRouter);
 
 // Health check endpoint

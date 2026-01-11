@@ -40,7 +40,7 @@ router.get('/:id', async (req, res) => {
 // POST create new student
 router.post('/', async (req, res) => {
     try {
-        const { name, grade, age, phone, address, paymentStatus } = req.body;
+        const { name, grade, classId, age, phone, address, paymentStatus } = req.body;
 
         // Validation
         if (!name || !grade) {
@@ -51,14 +51,15 @@ router.post('/', async (req, res) => {
         const result = await pool.request()
             .input('name', sql.NVarChar, name)
             .input('grade', sql.NVarChar, grade)
+            .input('classId', sql.Int, classId || null)
             .input('age', sql.Int, age || null)
             .input('phone', sql.NVarChar, phone || null)
             .input('address', sql.NVarChar, address || null)
             .input('paymentStatus', sql.NVarChar, paymentStatus || 'Unpaid')
             .query(`
-        INSERT INTO Students (name, grade, age, phone, address, paymentStatus, createdAt)
+        INSERT INTO Students (name, grade, classId, age, phone, address, paymentStatus, createdAt)
         OUTPUT INSERTED.*
-        VALUES (@name, @grade, @age, @phone, @address, @paymentStatus, GETDATE())
+        VALUES (@name, @grade, @classId, @age, @phone, @address, @paymentStatus, GETDATE())
       `);
 
         res.status(201).json(result.recordset[0]);
@@ -72,20 +73,21 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
     try {
         const { id } = req.params;
-        const { name, grade, age, phone, address, paymentStatus } = req.body;
+        const { name, grade, classId, age, phone, address, paymentStatus } = req.body;
 
         const pool = getPool();
         const result = await pool.request()
             .input('id', sql.Int, id)
             .input('name', sql.NVarChar, name)
             .input('grade', sql.NVarChar, grade)
+            .input('classId', sql.Int, classId || null)
             .input('age', sql.Int, age || null)
             .input('phone', sql.NVarChar, phone || null)
             .input('address', sql.NVarChar, address || null)
             .input('paymentStatus', sql.NVarChar, paymentStatus)
             .query(`
         UPDATE Students 
-        SET name = @name, grade = @grade, age = @age, 
+        SET name = @name, grade = @grade, classId = @classId, age = @age, 
             phone = @phone, address = @address, paymentStatus = @paymentStatus
         OUTPUT INSERTED.*
         WHERE id = @id
