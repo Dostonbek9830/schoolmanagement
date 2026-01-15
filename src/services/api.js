@@ -60,6 +60,42 @@ export const studentsAPI = {
     },
 };
 
+// Classes API
+export const classesAPI = {
+    // Get all classes
+    getAll: async () => {
+        return fetchAPI('/classes');
+    },
+
+    // Get single class by ID
+    getById: async (id) => {
+        return fetchAPI(`/classes/${id}`);
+    },
+
+    // Create new class
+    create: async (classData) => {
+        return fetchAPI('/classes', {
+            method: 'POST',
+            body: JSON.stringify(classData),
+        });
+    },
+
+    // Update class
+    update: async (id, classData) => {
+        return fetchAPI(`/classes/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify(classData),
+        });
+    },
+
+    // Delete class
+    delete: async (id) => {
+        return fetchAPI(`/classes/${id}`, {
+            method: 'DELETE',
+        });
+    },
+};
+
 // Dashboard API
 export const dashboardAPI = {
     // Get dashboard statistics
